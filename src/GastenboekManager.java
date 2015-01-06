@@ -21,14 +21,8 @@ import java.util.Scanner;
  */
 public class GastenboekManager {
 
-    GastenboekEntry entry = null;
-    Gastenboek gastenboek = null;
-    String filename = "";
+    String filename = "gastenboek.dat";
 
-    public GastenboekManager(Gastenboek gastenboek) {
-        setFilename(gastenboek.gastenboekNaam);
-        this.gastenboek = gastenboek;
-    }
 
     public GastenboekEntry newEntry() {
 
@@ -50,22 +44,6 @@ public class GastenboekManager {
         // entry = 
         return new GastenboekEntry(timestamp, name, description);
 
-    }
-
-    public void setFilename(String filename) {
-        this.filename = filename + ".dat";
-    }
-
-    public void addEntry(GastenboekEntry entry) {
-        gastenboek.addEntry(entry);
-
-    }
-
-    public void oversichtEntries() {
-
-        for (GastenboekEntry entry : gastenboek.getGastenboekEntries()) {
-            System.out.println("Bedankt. Jouw boodschap \"" + entry.getBoodschap() + "\" is toegevoegd aan onze gastenboek");
-        }
     }
 
     public void save(Gastenboek gastenboek) {
