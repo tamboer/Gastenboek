@@ -1,4 +1,6 @@
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 /*
@@ -12,14 +14,12 @@ import java.util.Scanner;
  */
 public class gastenboekMain {
 
-    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
 
-        
         Scanner input = new Scanner(System.in);
         Gastenboek vdabGastenboek = new Gastenboek("vdab-gastenboek");
         GastenboekManager vdabGastenboekManager = new GastenboekManager(vdabGastenboek);
@@ -31,11 +31,17 @@ public class gastenboekMain {
             //lkjlkj
             GastenboekEntry entry = vdabGastenboekManager.newEntry();
             vdabGastenboekManager.addEntry(entry);
-            vdabGastenboekManager.addEntryToFile(entry);
+            vdabGastenboekManager.save(vdabGastenboek);
             vdabGastenboekManager.oversichtEntries();
         } else {
-            vdabGastenboekManager.addEntryFromFile();
-            vdabGastenboekManager.oversichtEntriesFromFile();
+            vdabGastenboek = vdabGastenboekManager.load();
+
+            List<GastenboekEntry> entries = vdabGastenboek.getGastenboekEntries();
+            Collections.reverse(entries);
+            for (GastenboekEntry entry : entries) {
+                System.out.println(entry.getTijdstip() + ":" + entry.getSchrijverNaam() + ":" + entry.getBoodschap());
+            }
+            
         }
     }
 

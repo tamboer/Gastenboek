@@ -1,4 +1,5 @@
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,12 +12,11 @@ import java.util.List;
  *
  * @author Willem
  */
-public class Gastenboek {
+public class Gastenboek implements Serializable {
 
     private static final long serialVersionUID = 1L;
     String gastenboekNaam = "";
     private List<GastenboekEntry> gastenboekEntries = new ArrayList<>();
-    private List<GastenboekEntry> gastenboekEntriesFromFile = new ArrayList<>();
 
     public Gastenboek(String gastenboekNaam) {
         this.gastenboekNaam = gastenboekNaam;
@@ -25,22 +25,9 @@ public class Gastenboek {
     public void addEntry(GastenboekEntry entry) {
         gastenboekEntries.add(entry);
     }
-    
-    public void populateList(GastenboekEntry entry) {
-        gastenboekEntriesFromFile.add(entry);
-    }
 
     public List<GastenboekEntry> getGastenboekEntries() {
         return gastenboekEntries;
     }
-
-    public List<GastenboekEntry> getGastenboekEntriesFromFile() {
-        return gastenboekEntriesFromFile;
-    }
-    
-    
-
-    
-    
 
 }

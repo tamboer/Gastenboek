@@ -61,77 +61,10 @@ public class GastenboekManager {
 
     }
 
-    public void oversichtEntriesFromFile() {
-        for (GastenboekEntry entry : gastenboek.getGastenboekEntriesFromFile()) {
-            System.out.println(entry.getBoodschap() + "\n");
-        }
-    }
-
     public void oversichtEntries() {
 
         for (GastenboekEntry entry : gastenboek.getGastenboekEntries()) {
             System.out.println("Bedankt. Jouw boodschap \"" + entry.getBoodschap() + "\" is toegevoegd aan onze gastenboek");
-        }
-    }
-
-    public void addEntryToFile(GastenboekEntry entry) {
-
-        FileOutputStream file = null;//new FileInputStream();
-        BufferedOutputStream buffer = null;
-        ObjectOutputStream obj = null;
-
-        try {
-            file = new FileOutputStream(this.filename);
-            buffer = new BufferedOutputStream(file);
-            obj = new ObjectOutputStream(file);
-
-            obj.writeObject(entry);
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        } finally {
-            if (obj != null) {
-                try {
-                    obj.close();
-                } catch (IOException e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-
-        }
-
-    }
-
-    public void addEntryFromFile() {
-        File checkfile = new File(this.filename);
-        if (checkfile.exists()) {
-
-            // populate arraylist gastenboekEntriesFromFile
-            FileInputStream file = null;
-            //BufferedInputStream buffer = null;
-            ObjectInputStream obj = null;
-            GastenboekEntry entry = null;
-            try {
-
-                file = new FileInputStream(this.filename);
-                //buffer = new BufferedInputStream(file);
-                obj = new ObjectInputStream(file);
-
-                //entry = (GastenboekEntry) obj.readObject();
-                entry = (GastenboekEntry) obj.readObject();
-                gastenboek.populateList(entry);
-
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            } finally {
-                if (obj != null) {
-                    try {
-                        obj.close();
-                    } catch (IOException e) {
-                        System.out.println(e.getMessage());
-                    }
-                }
-            }
         }
     }
 
